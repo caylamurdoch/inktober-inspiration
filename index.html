@@ -3,14 +3,17 @@
 
 <head>
     <title>INKTOBER INSPIRATION</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js">
-    </script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+        var images = [];
         $(document).ready(function() {
-            function getImage(projectid) {
+            function getImages(projectid) {
                 let myurl = "https://api.behance.net/v2/projects/"
                 myurl += projectid
                 myurl += "?client_id=2eHOjpGzEIHKMH0ANiqK5OixkegtMhAp"
@@ -20,6 +23,21 @@
                     dataType: "jsonp",
                     success: function(parsed_json) {
                         console.log(parsed_json)
+                        let modules = parsed_json['project']['modules']
+                        $.each(modules, function(i, module) {
+                            if (module['type'] === "image") {
+                                images.push(module['src'])
+                            }
+                        })
+                        let results = ""
+                        $.each(images, function(i, image) {
+                            console.log("image " + image)
+                            results += "<img src=\""
+                            results += image
+                            results += "\"><br>"
+                        })
+                        $("#illustrations").html(results)
+                        images = []
                     }
                 })
             };
@@ -27,30 +45,36 @@
             $("#generator").click(function(event) {
                 event.preventDefault()
                 let myurl = "https://api.behance.net/v2/projects?q=inktober&client_id=2eHOjpGzEIHKMH0ANiqK5OixkegtMhAp"
-                console.log(myurl)
                 $.ajax({
                     url: myurl,
                     dataType: "jsonp",
                     success: function(parsed_json) {
-                        console.log(parsed_json);
+                        console.log(parsed_json)
                         let projects = parsed_json['projects']
-                        let js = 5
-                        $.each(js, function(i, j) {
-                            let projectid = project['id']
-                            console.log(projectid)
-                            getImage(projectid);
-                        })
+                        let random = Math.floor(Math.random() * (40 + 1));
+                        let projectid = projects[random]['id']
+                        getImages(projectid)
+                        // console.log("IMAGES[0] = " + images[0])
+                        // images.splice(0, 1)
+                        // console.log("IMAGES[0] = " + images[0])
+                        // $.each(images, function(i, image) {
+                        //     console.log("image " + image)
+                        //     $("#illustrations").html("<img src=\"" + image + "\">")
+                        // })
+                        // images = []
                     }
-                })
+                });
             });
         });
     </script>
 </head>
 
-<body>
-    <h1>Inktober Inspiration</h1>
-    <button id="generator">Generate Inspiration</button>
-    <div id="illustrations"></div>
+<body class="bg-1">
+    <div class="container text-center bg-3">
+        <h1>Inktober Inspiration</h1><br>
+        <button id="generator" class="btn">Generate Inspiration</button>
+    </div>
+    <div id="illustrations" class="container text-center bg-2"></div>
 </body>
 
 </html>

@@ -1,0 +1,41 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.bg-1 {
+    background-color: #9E9E9E;
+    color: #333;
+}
+
+.bg-2 {
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+}
+
+.bg-3 {
+    background-image: linear-gradient(#CDDC39, #fff);
+    color: #333;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #f1f1f1;
+    border-radius: 0;
+    transition: .2s;
+}
+
+.btn:hover,
+.btn:focus {
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #000;
+}
+
+.container {
+    padding: 10%;
+    margin: 0, auto;
+}

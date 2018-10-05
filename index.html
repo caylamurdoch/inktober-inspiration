@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>INKTOBER INSPIRATION</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js">
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function getImage(projectid) {
+                let myurl = "https://api.behance.net/v2/projects/"
+                myurl += projectid
+                myurl += "?client_id=2eHOjpGzEIHKMH0ANiqK5OixkegtMhAp"
+                console.log(myurl)
+                $.ajax({
+                    url: myurl,
+                    dataType: "jsonp",
+                    success: function(parsed_json) {
+                        console.log(parsed_json)
+                    }
+                })
+            };
+
+            $("#generator").click(function(event) {
+                event.preventDefault()
+                let myurl = "https://api.behance.net/v2/projects?q=inktober&client_id=2eHOjpGzEIHKMH0ANiqK5OixkegtMhAp"
+                console.log(myurl)
+                $.ajax({
+                    url: myurl,
+                    dataType: "jsonp",
+                    success: function(parsed_json) {
+                        console.log(parsed_json);
+                        let projects = parsed_json['projects']
+                        let js = 5
+                        $.each(js, function(i, j) {
+                            let projectid = project['id']
+                            console.log(projectid)
+                            getImage(projectid);
+                        })
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Inktober Inspiration</h1>
+    <button id="generator">Generate Inspiration</button>
+    <div id="illustrations"></div>
+</body>
+
+</html>

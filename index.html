@@ -54,14 +54,6 @@
                         let random = Math.floor(Math.random() * (40 + 1));
                         let projectid = projects[random]['id']
                         getImages(projectid)
-                        // console.log("IMAGES[0] = " + images[0])
-                        // images.splice(0, 1)
-                        // console.log("IMAGES[0] = " + images[0])
-                        // $.each(images, function(i, image) {
-                        //     console.log("image " + image)
-                        //     $("#illustrations").html("<img src=\"" + image + "\">")
-                        // })
-                        // images = []
                     }
                 });
             });
@@ -72,6 +64,19 @@
 <body class="bg-1">
     <div class="container text-center bg-3">
         <h1>Inktober Inspiration</h1><br>
+        <div class="row container-small parent bg-1">
+            <div class="col-sm-5 child">
+                <h2>What is Inktober?</h2><br>
+                <ol class="list-group list-group-mine">
+                    <li class="list-group-item">1. Make a drawing in ink based off the daily prompt</li>
+                    <li class="list-group-item">2. Post it</li>
+                    <li class="list-group-item">3. Hashtag it with #inktober and #inktober2018</li>
+                </ol>
+            </div>
+            <div class="col-sm-5 child">
+                <img src="https://static1.squarespace.com/static/5af1bd791aef1d143f85e67e/t/5b8afc2a898583fbc6b074f3/1537474133284/2018promptlist.jpg?format=1000w" alt="inktober image prompt" id="prompt">
+            </div>
+        </div>
         <button id="generator" class="btn">Generate Inspiration</button>
     </div>
     <div id="illustrations" class="container text-center bg-2"></div>

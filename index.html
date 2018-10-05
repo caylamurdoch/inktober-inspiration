@@ -13,6 +13,26 @@
     <script>
         var images = [];
         $(document).ready(function() {
+
+            var stashedIDs = (function() {
+                var json = null;
+                $.ajax({
+                    'async': false,
+                    'global': false,
+                    'url': "ids.json",
+                    'dataType': "json",
+                    'success': function(data) {
+                        // console.log("success data:", data)
+                        json = data;
+                    }
+                });
+                return json;
+            })();
+            stashedIDs = stashedIDs["ids"]
+
+            console.log("json on disc", stashedIDs)
+
+
             function getImages(projectid) {
                 let myurl = "https://api.behance.net/v2/projects/"
                 myurl += projectid
@@ -43,27 +63,35 @@
             };
 
             $("#generator").click(function(event) {
-                event.preventDefault()
-                let myurl = "https://api.behance.net/v2/projects?q=inktober&client_id=2eHOjpGzEIHKMH0ANiqK5OixkegtMhAp"
-                $.ajax({
-                    url: myurl,
-                    dataType: "jsonp",
-                    success: function(parsed_json) {
-                        console.log(parsed_json)
-                        let projects = parsed_json['projects']
-                        let random = Math.floor(Math.random() * (40 + 1));
-                        let projectid = projects[random]['id']
-                        getImages(projectid)
-                        // console.log("IMAGES[0] = " + images[0])
-                        // images.splice(0, 1)
-                        // console.log("IMAGES[0] = " + images[0])
-                        // $.each(images, function(i, image) {
-                        //     console.log("image " + image)
-                        //     $("#illustrations").html("<img src=\"" + image + "\">")
-                        // })
-                        // images = []
-                    }
-                });
+
+
+                let random = Math.floor(Math.random() * (40 + 7)).toString();
+                console.log(random)
+                let projectid = stashedIDs[random]
+                console.log(projectid)
+                getImages(projectid)
+
+                // event.preventDefault()
+                // let myurl = "https://api.behance.net/v2/projects?q=inktober&client_id=2eHOjpGzEIHKMH0ANiqK5OixkegtMhAp"
+                // $.ajax({
+                //     url: myurl,
+                //     dataType: "jsonp",
+                //     success: function(parsed_json) {
+                //         console.log(parsed_json)
+                //         let projects = parsed_json['projects']
+                //         let random = Math.floor(Math.random() * (40 + 7));
+                //         let projectid = projects[random]['id']
+                //         getImages(projectid)
+                //         // console.log("IMAGES[0] = " + images[0])
+                //         // images.splice(0, 1)
+                //         // console.log("IMAGES[0] = " + images[0])
+                //         // $.each(images, function(i, image) {
+                //         //     console.log("image " + image)
+                //         //     $("#illustrations").html("<img src=\"" + image + "\">")
+                //         // })
+                //         // images = []
+                //     }
+                // });
             });
         });
     </script>

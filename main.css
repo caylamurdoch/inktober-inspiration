@@ -3,8 +3,8 @@ body {
 }
 
 .bg-1 {
-    background-color: #9E9E9E;
-    color: #333;
+    background-color: #333;
+    color: #fff;
 }
 
 .bg-2 {
@@ -14,7 +14,7 @@ body {
 }
 
 .bg-3 {
-    background-image: linear-gradient(#CDDC39, #fff);
+    background-image: linear-gradient(#FF9800, #fff);
     color: #333;
     border-radius: 25px 25px 0px 0px;
 }
@@ -37,9 +37,33 @@ body {
 .container {
     padding: 10%;
     margin: 0, auto;
-    -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-    box-shadow: 0 10px 6px -6px #777;
 }
 
+.container-small {
+    padding: 5%;
+}
+
+#info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#prompt {
+    width: 50%;
+    border-radius: 25px;
+}
+
+.list-group-mine .list-group-item {
+    background-color: #333;
+    color: #fff;
+}
+
+.parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+    margin-bottom: 40px;
+    padding: 25px;
 }

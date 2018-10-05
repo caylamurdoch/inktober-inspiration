@@ -1,7 +1,5 @@
-html,
 body {
-    margin: 0;
-    padding: 0;
+    padding: 5%;
 }
 
 .bg-1 {
@@ -12,12 +10,13 @@ body {
 .bg-2 {
     background-color: #fff;
     color: #333;
-    width: 100%;
+    border-radius: 0px 0px 25px 25px;
 }
 
 .bg-3 {
     background-image: linear-gradient(#CDDC39, #fff);
     color: #333;
+    border-radius: 25px 25px 0px 0px;
 }
 
 .btn {
@@ -38,4 +37,9 @@ body {
 .container {
     padding: 10%;
     margin: 0, auto;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+}
+
 }
